@@ -24,15 +24,15 @@ print("KARI",len(kari))
 # 1. Determine how many images you want in the final gif.
 # 2. Do them
 # 3. Save them.
-howmany = 9
+howmany = 1
 kmg.ResetImages()
 kmg.imgIn = image_flat
 for i,k in enumerate(kari[:howmany]):
     print(i,k)
-    kmg.n = k
+    kmg.n = 9
     print("INOUT",len(kmg.imgIn),len(kmg.imgOut))
     kmg.getImageKM() # <- perform KMeans (found in KMeansGifer.py)
     print("INOUT",len(kmg.imgIn),len(kmg.imgOut))
     kmg.AddImage()
     print("INOUT",len(kmg.imgIn),len(kmg.imgOut))
-kmg.SaveToDisk()
+kmg.SaveToDisk('jpg')
