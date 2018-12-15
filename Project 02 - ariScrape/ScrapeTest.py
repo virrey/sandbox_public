@@ -1,10 +1,24 @@
 from ariScrape import Scraper
+from urllib import robotparser 
+
+def robot_check(url_parts):
+    url = ''.join([str(p) for p in url_parts])
+    rp = robotparser.RobotFileParser()
+    rp.set_url(url)
+    rp.read()
+    if rp.can_fetch("*", url):
+        print("Robots.txt: User Allowed")
+        return True
+    else:
+        print("Robots.txt: User Disallowed. Please abort.")
+        return False
 
 # test ticker symbol @ nasdaq.com
 test_ticker = "INTC"
 url_prefix = "https://www.nasdaq.com/symbol/"
 url_suffix = "/financials"
 url_parts = [url_prefix,test_ticker,url_suffix]
+robot_check(url_parts)
 
 # xpath of @top left of table @url
 # >> //*[@id="financials-iframe-wrap"]/div[1]/table/tbody/tr[1]/td[2]
